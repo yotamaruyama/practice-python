@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 # CSVファイルを読み込む
-df = pd.read_csv("peak_data.csv", skiprows=11, encoding="shift-jis")
+df = pd.read_csv("TRACE003.CSV", skiprows=11, encoding="shift-jis")
 
 # 'Frequency'と'Amplitude'列を抽出
 data = df[["Frequency", "Amplitude"]]
@@ -55,4 +55,4 @@ peak_data = pd.DataFrame(
 )
 
 # CSVファイルに出力
-peak_data.to_csv("peak_data.csv", index=False)
+# peak_data.to_csv("peak_data.csv", index=False)

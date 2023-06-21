@@ -35,9 +35,15 @@ csv_data = """Frequency,Amplitude
 # CSVデータを文字列IOとして読み込む
 df = pd.read_csv(io.StringIO(csv_data))
 
+# Frequency列をMHzに変換
+df["Frequency"] = df["Frequency"] / 1e6
+
+# Amplitude列をdBmに変換
+df["Amplitude"] = df["Amplitude"]
+
 # データをグラフ化
 plt.plot(df["Frequency"], df["Amplitude"])
-plt.xlabel("Frequency (Hz)")
+plt.xlabel("Frequency (MHz)")
 plt.ylabel("Amplitude (dBm)")
 plt.title("Spectrum Analyzer Data")
 plt.grid(True)

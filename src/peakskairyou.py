@@ -34,27 +34,25 @@ for f in plot_frequency:
                 index = i
     peak_indices.append(index)
 
-# プロット
-plt.plot(frequency, amplitude, label="Spectrum")
+plt.plot(frequency / 1e6, amplitude, label="Spectrum")  # 周波数をMHz単位に変換
 plt.scatter(
-    frequency[peak_indices],
+    frequency[peak_indices] / 1e6,  # 周波数をMHz単位に変換
     amplitude[peak_indices],
     color="red",
     label="Peaks",
 )
-plt.xlabel("Frequency [Hz]")
+plt.xlabel("Frequency [MHz]")  # x軸のラベルをMHz単位に変更
 plt.ylabel("Amplitude [dBm]")
 plt.legend()
 plt.show()
 # ピークの周波数と振幅を表示
 for i in peak_indices:
-    print(f"Frequency: {frequency[i]} Hz, Amplitude: {amplitude[i]} dBm")
-
+    print(f"Frequency: {frequency[i]/1e6:.2f} MHz, Amplitude: {amplitude[i]:.2f} dBm")
 
 # ピークの周波数と振幅をデータフレームに変換
 peak_data = pd.DataFrame(
     {
-        "Frequency": frequency[peak_indices],
+        "Frequency": frequency[peak_indices] / 1e6,
         "Amplitude": amplitude[peak_indices],
     },
 )
