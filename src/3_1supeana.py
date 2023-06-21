@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 # CSVファイルを読み込む
-df = pd.read_csv("TRACE003.CSV", skiprows=11, encoding="shift-jis")
+df = pd.read_csv("peak_data.csv", skiprows=11, encoding="shift-jis")
 
 # 'Frequency'と'Amplitude'列を抽出
 data = df[["Frequency", "Amplitude"]]
@@ -44,3 +44,15 @@ plt.show()
 # ピークの周波数と振幅を表示
 for i in peak_indices:
     print(f"Frequency: {frequency[i]} Hz, Amplitude: {amplitude[i]} dBm")
+
+
+# ピークの周波数と振幅をデータフレームに変換
+peak_data = pd.DataFrame(
+    {
+        "Frequency": frequency[peak_indices],
+        "Amplitude": amplitude[peak_indices],
+    },
+)
+
+# CSVファイルに出力
+peak_data.to_csv("peak_data.csv", index=False)
